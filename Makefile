@@ -4,13 +4,13 @@ CC = gcc
 
 # the most basic way of building that is most likely to work on most systems
 .PHONY: run
-run: run.c
-	$(CC) -O3 -o run run.c -lm
-	$(CC) -O3 -o runq runq.c -lm
+run: run.cpp
+	$(CC) -std=c++20  -Wall -Wextra -O3 -o run run.cpp -lm
+	$(CC) -std=c++20  -Wall -Wextra -O3 -o runq runq.cpp -lm
 
 # useful for a debug build, can then e.g. analyze with valgrind, example:
 # $ valgrind --leak-check=full ./run out/model.bin -n 3
-rundebug: run.c
+rundebug: run.cpp
 	$(CC) -g -o run run.c -lm
 	$(CC) -g -o runq runq.c -lm
 
@@ -24,7 +24,7 @@ rundebug: run.c
 # It turns off -fsemantic-interposition.
 # In our specific application this is *probably* okay to use
 .PHONY: runfast
-runfast: run.c
+runfast: run.cpp
 	$(CC) -Ofast -o run run.c -lm
 	$(CC) -Ofast -o runq runq.c -lm
 
@@ -32,7 +32,7 @@ runfast: run.c
 # make sure to also enable multiple threads when running, e.g.:
 # OMP_NUM_THREADS=4 ./run out/model.bin
 .PHONY: runomp
-runomp: run.c
+runomp: run.cpp
 	$(CC) -Ofast -fopenmp -march=native run.c  -lm  -o run
 	$(CC) -Ofast -fopenmp -march=native runq.c  -lm  -o runq
 

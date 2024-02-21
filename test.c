@@ -1,5 +1,5 @@
 #define TESTING
-#include "run.c"
+#include "run.cpp"
 
 void assert_eq(int a, int b) {
     if (a != b) {

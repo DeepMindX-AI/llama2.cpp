@@ -4,13 +4,10 @@
 #
 # Tasks are added as separate sub-projects so as compilation errors in
 # one task don't affect another task.
-
-3.6
 project(llama2.cpp)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O3 -Wall")
 
-
-# Add tasks subprojects
-include(cmake/utils.cmake)
-add_subprojects(${CMAKE_SOURCE_DIR})
+add_executable(run run.cpp)
+add_executable(runq runq.cpp)
